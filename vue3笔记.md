@@ -9,3 +9,20 @@
 ​	npm install 
 
 ​	npm run dev
+
+
+
+### 声明式渲染
+
+​	vue使用声明式渲染，可以提高开发效率
+
+<script>
+  export default {
+    data(){
+      return{
+        num:0,
+        uname:'zkt'
+      }
+    }
+  }
+</script>
