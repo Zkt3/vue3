@@ -7,7 +7,8 @@
         msg:"<h2>标题</h2>",
         id:"d1",
         attributeName:"id",
-        mouseEvent:"click"
+        mouseEvent:"click",
+        message:'zzkt'
       }
     },
     methods:{
@@ -16,6 +17,17 @@
       },
       changeColor(){
         this.id="d2"
+      }
+    },
+    computed:{
+      // 简写
+      // reverseMsa:function (){
+      //   return this.message.split('').reverse().join('')
+      // }
+      reverseMsg:{
+        get:function (){
+          return this.message.split('').reverse().join('')
+        }
       }
     }
   }
@@ -40,6 +52,8 @@
     <!--动态事件-->
     <button @[mouseEvent]="attributeName='class'">改变属性</button>
     <button @click="mouseEvent='mouseover'">改变事件</button>
+    <p>{{message}}</p>
+    <p>{{reverseMsg}}</p>
   </div>
 </template>
 

@@ -131,3 +131,28 @@
 ​	<button @[mouseEvent]="attributeName='class'">改变属性</button>
 
 ​	<button @click="mouseEvent='mouseover'">改变事件</button>
+
+
+
+### 计算属性
+
+#### 	和methods的区别
+
+​	只要依赖值不变，就不会重新计算，计算属性将基于它们的响应依赖关系缓存
+
+	computed:{
+			reverseMsa:function (){
+	    	return this.message.split('').reverse().join('')
+	  }
+	}
+​	
+
+#### 	getter和setter
+
+​		计算属性默认只有getter，需要时可以自己提供一个setter，计算属性一般没有set，是只读属性
+
+		reverseMsg:{
+			get:function (){
+	    	return this.message.split('').reverse().join('')
+	  }
+	}
