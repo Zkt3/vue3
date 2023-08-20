@@ -115,4 +115,19 @@
 <p>{{num+1}}</p>
 <p>{{uname.split('').reverse().join('')}}</p>
 
+
+
+### 动态参数
+
+#### 	动态属性
+
+<p v-bind:[attributeName]="id">v-bind绑定</p>
+<button v-on:click="attributeName='class'">改变属性</button>			
+
 ​	
+
+#### 	动态事件
+
+​	<button @[mouseEvent]="attributeName='class'">改变属性</button>
+
+​	<button @click="mouseEvent='mouseover'">改变事件</button>

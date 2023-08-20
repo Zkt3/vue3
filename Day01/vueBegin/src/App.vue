@@ -5,7 +5,9 @@
         num:0,
         uname:'zkt',
         msg:"<h2>标题</h2>",
-        id:"d1"
+        id:"d1",
+        attributeName:"id",
+        mouseEvent:"click"
       }
     },
     methods:{
@@ -31,7 +33,13 @@
     <!--使用JavaScript表达式-->
     <p>{{num+1}}</p>
     <p>{{uname.split('').reverse().join('')}}</p>
-    <button v-on:click="changeColor">改变颜色</button>
+    <!--动态参数-->
+    <!--动态属性-->
+    <p v-bind:[attributeName]="id">v-bind绑定</p>
+    <button v-on:click="attributeName='class'">改变属性</button>
+    <!--动态事件-->
+    <button @[mouseEvent]="attributeName='class'">改变属性</button>
+    <button @click="mouseEvent='mouseover'">改变事件</button>
   </div>
 </template>
 
@@ -53,5 +61,8 @@
 }
 #d2{
   color: blue;
+}
+.d1{
+  font-size: 32px;
 }
 </style>
