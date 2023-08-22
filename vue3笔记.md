@@ -156,3 +156,47 @@
 	    	return this.message.split('').reverse().join('')
 	  }
 	}
+
+
+### watch侦听器
+
+#### 函数写法
+
+```
+watch:{
+  message:function (newValue,oldValue){
+    *console*.log(newValue)
+    *console*.log(oldValue)
+  }
+}
+```
+
+每当message发生变化时，就会调用这个函数，可以在watch中执行异步操作或者复杂逻辑代码，一个数据会影响多个数据
+
+
+
+#### 对象写法
+
+	message:{
+		immediate:true, //初始化的时候调用函数
+	  handler:function (newValue){
+	    if(newValue.length<5 || newValue.length>10){
+	      *console*.log("输入框的内容不能小于5或者大于10")
+	    }
+	  }
+	}
+
+
+#### 深度监听(对象)
+
+watch监听不到对象中属性的变化
+
+```
+user:{
+  handler:function (newValue){
+    *console*.log(newValue)
+  },
+  deep:true //侦听器会一层一层向下遍历，给对象每个属性都加上侦听器
+}
+```
+
