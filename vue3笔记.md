@@ -249,13 +249,21 @@ user:{
 
 
 
-##### class类名的数组使用方式
+##### 		class类名的数组使用方式
 
 <p :class="[activeClass]">hello3</p>
 
 
 
-#### style
+#### 	style
 
 <p style="color: red">hello</p>
 <p :style="{color:activeColor,fontSize:fontSize,'background-color':bgColor}">hello1</p>
+
+
+
+### 渲染
+
+#### 	条件渲染
+
+##### 			v-if
