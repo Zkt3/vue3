@@ -266,4 +266,14 @@ user:{
 
 #### 	条件渲染
 
-##### 			v-if
+##### 			v-if(运行条件很少改变，一次性)				
+
+	<p v-if="age>=18">成年人</p>
+	<p v-else>小孩</p>
+
+##### 		v-show(频繁切换状态)
+
+	<p v-show="sex==='man'">男生</p>
+	<p v-show="sex==='woman'">女生</p>
+
+带有v-show的元素始终会被渲染并保留在DOM中，v-show只是简单地切换元素的display属性，v-show不支持template元素，也不支持v-else，v-if只要为false，对应的元素以及子元素都不会被渲染，用来控制DOM元素的创建和销毁
