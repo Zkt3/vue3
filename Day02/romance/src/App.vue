@@ -3,7 +3,8 @@
     data(){
       return{
         age:18,
-        sex:'man '
+        sex:'man ',
+        person:['张三','李四','王五']
       }
     }
   }
@@ -16,6 +17,14 @@
 
     <p v-show="sex==='man'">男生</p>
     <p v-show="sex==='woman'">女生</p>
+
+    <ul>
+      <li v-for="item in person" :key="item">{{item}}</li>
+    </ul>
+
+    <ul>
+      <li v-for="(item,index) in person" :key="index">{{item}}-->{{index}}</li>
+    </ul>
   </div>
 
 </template>
