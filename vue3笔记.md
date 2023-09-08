@@ -282,4 +282,13 @@ user:{
 
 #### 	列表渲染(v-for)
 
-​		
+	<ul>
+			<li v-for="(item,index) in person" :key="index">{{item}}-->{{index}}</li>
+	</ul>
+v-for使用数组，item代表数组中每一个元素，index表示数组元素的下标
+
+v-for使用对象，item表示键值，key表示键名，index表示下标
+
+v-for为什么要有key
+
+​	key是唯一标识，为了给Vue一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，快速找到节点，减少渲染次数，提升渲染性能
