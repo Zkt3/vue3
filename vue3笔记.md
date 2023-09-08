@@ -343,3 +343,29 @@ v-for为什么要有key
 
 <style scoped>
 </style>
+
+
+
+### 事件修饰符
+
+​	Vue.js为v-on提供了事件修饰符，修饰符是由.开头的指令后缀来表示的
+
+#### .stop(阻止事件冒泡)
+
+​	@click.stop
+
+#### .prevent(阻止默认行为)
+
+​	@click.prevent
+
+#### .once(只触发一次回调)
+
+​	@click.once
+
+
+
+### 按键修饰符
+
+​	@keyup.enter 
+
+#### 	
