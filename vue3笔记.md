@@ -801,3 +801,53 @@ methods:{
 ### Vue生命周期
 
 #### 	图示![img](https://img-blog.csdnimg.cn/28424bc0ceb5489d87f1f75516bd9101.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3VwZXLnoIHlips=,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+
+
+
+
+### 组合式API
+
+​	将同一个逻辑关注点相关代码收集在一起，setup选项在组件被创建之前执行，它是围绕beforecreated和created生命周期钩子运行的，所以不需要显示地定义它们，不需要使用this，this不会指向实例
+
+#### 	初使用(非响应式 )
+
+<script>
+  import content from "./components/content.vue";
+  export default {
+    data(){
+      return{
+        message:"helloWord"
+      }
+    },
+    setup(){
+      let msg="hello"
+      function changeMsg(){
+        msg="nihao"
+      }
+      return {msg,changeMsg}
+    },
+    components:{
+      content
+    }
+  }
+</script>
+
+<template>
+  <div>
+    {{msg}}
+    <button @click="changeMsg">改变msg</button>
+    <content></content>
+  </div>
+</template>
+
+<style scoped>
+</style>
+
+
+
+#### 	带ref的响应式变量
+
+​		import {ref} from vue
+
+​		const conter =ref(0)
