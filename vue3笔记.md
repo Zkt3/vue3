@@ -795,3 +795,9 @@ methods:{
 
 <style scoped>
 </style>
+
+
+
+### Vue生命周期
+
+#### 	图示![img](https://img-blog.csdnimg.cn/28424bc0ceb5489d87f1f75516bd9101.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc3VwZXLnoIHlips=,size_20,color_FFFFFF,t_70,g_se,x_16)
