@@ -526,3 +526,32 @@ v-for为什么要有key
 ##### 单向数据流
 
 ​	所有的prop都使得其父子prop实现单向下行绑定，父组件的更新会向下流动到子组件，但反过来则不行
+
+
+
+#### 子组件向父组件传递数据(自定义事件)
+
+​	this.$emit('自定义事件的名称', '发送的事件参数')
+
+
+
+子组件:
+
+<button @click="sendParent">将数据提交给父组件</button>
+
+	methods:{
+		sendParent:function (){
+	    this.$emit('injectMsg',this.msg)
+	  }
+	}
+
+
+父组件:
+
+<content @injectMsg="getChild"></content>
+
+methods:{
+  getChild:function (value){
+    	this.message=value
+ 	 }
+}
