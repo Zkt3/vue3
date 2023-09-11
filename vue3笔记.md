@@ -851,3 +851,17 @@ methods:{
 ​		import {ref} from vue
 
 ​		const conter =ref(0)
+
+
+
+#### 	定义引用类型(reactive)
+
+​		import {reactive} from "vue";
+
+		const obj=reactive({
+	  	name:"张三",
+	  	age:30,
+	  	children:{
+	    	name:"小张"
+	  	}
+	})

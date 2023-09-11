@@ -1,6 +1,7 @@
 <script>
   import content from "./components/content.vue";
   import {ref} from "vue";
+  import {reactive} from "vue";
   export default {
     data(){
       return{
@@ -17,7 +18,15 @@
       function changeCounter(){
         counter.value++
       }
-      return {msg,changeMsg,counter,changeCounter}
+
+      const obj=reactive({
+        name:"张三",
+        age:30,
+        children:{
+          name:"小张"
+        }
+      })
+      return {msg,changeMsg,counter,changeCounter,obj}
     },
     components:{
       content
