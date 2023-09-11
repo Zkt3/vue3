@@ -581,3 +581,177 @@ methods:{
 ##### 	子组件访问根组件($root)
 
 ​		this.$root
+
+
+
+### 插槽
+
+#### 	插槽的基本使用(slot)
+
+​		插槽相当于一个占位符
+
+<script setup>
+
+</script>
+
+<template>
+  <h2>Content组件内容</h2>
+  <slot></slot>
+</template>
+
+<style scoped>
+</style>
+
+<script>
+  import Content from "./components/Content.vue";
+  export default {
+    components:{
+      Content
+    }
+  }
+</script>
+
+<template>
+  <div>
+    <Content><button>按钮</button></Content>
+    <Content><input></Content>
+  </div>
+</template>
+
+<style scoped>
+</style>
+
+
+
+#### 	具名插槽(v-slot)
+
+##### 		具名插槽的使用
+
+​		可以为不同插槽分配独立的ID，决定内容应该渲染到什么地方，v-slot只能添加在template标签上
+
+<script setup>
+
+</script>
+
+<template>
+  <h2>Content组件内容</h2>
+  <slot name="button"></slot>
+  <slot name="input"></slot>
+  <slot name="h2"></slot>
+</template>
+
+<style scoped>
+</style>
+
+<script>
+  import Content from "./components/Content.vue";
+  export default {
+    components:{
+      Content
+    }
+  }
+</script>
+
+<template>
+  <div>
+    <Content><button>按钮</button></Content>
+    <Content><input></Content>
+
+​    <Content>
+      <template v-slot:button><button>按钮</button></template>
+      <template v-slot:input><input></template>
+      <template v-slot:h2><h2>插槽</h2></template>
+​    </Content>
+  </div>
+</template>
+
+<style scoped>
+</style>
+
+
+
+##### 	渲染作用域
+
+​		父级模板里的所有内容都是在父级作用域中编译的，子模板里的所有内容都是在子作用域中编译的
+
+
+
+##### 	备用内容
+
+​		为插槽指定备用内容，只会在没有提供内容时被渲染
+
+
+
+#### 作用域插槽
+
+​	父组件替换插槽的标签，但是数据由子组件提供
+
+​	
+
+<script>
+  export default {
+    data(){
+      return{
+        list:[1,2,3,4,5,6]
+      }
+    }
+  }
+</script>
+
+<template>
+  <h2>Content组件内容</h2>
+  <slot name="button"></slot>
+  <slot name="input"></slot>
+  <slot name="h2"></slot>
+
+  <slot :list="list"></slot>
+</template>
+
+<style scoped>
+</style>
+
+
+
+<script>
+  import Content from "./components/Content.vue";
+  export default {
+    components:{
+      Content
+    }
+  }
+</script>
+
+<template>
+  <div>
+    <Content><button>按钮</button></Content>
+    <Content><input></Content>
+
+​    <Content>
+      <template v-slot:button><button>按钮</button></template>
+      <template v-slot:input><input></template>
+      <template v-slot:h2><h2>插槽</h2></template>
+​    </Content>
+
+​    <Content>
+      <template v-slot:default="slotProps">
+        <ul>
+          <li v-for="item in slotProps.list" :key="item">
+            {{item}}
+          </li>
+        </ul>
+      </template>
+​    </Content>
+​    <Content>
+      <template v-slot:default="slotProps">
+        <ol>
+          <li v-for="item in slotProps.list" :key="item">
+            {{item}}
+          </li>
+        </ol>
+      </template>
+​    </Content>
+  </div>
+</template>
+
+<style scoped>
+</style>
