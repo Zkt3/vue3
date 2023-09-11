@@ -1,6 +1,6 @@
 <script>
   import content from "./components/content.vue";
-  import {ref,reactive,toRefs} from "vue";
+  import {ref,reactive,toRefs,watch} from "vue";
   export default {
     data(){
       return{
@@ -24,6 +24,11 @@
         children:{
           name:"小张"
         }
+      })
+
+      watch(counter,(newVal,oldVal)=>{
+        console.log(newVal)
+        console.log(oldVal)
       })
       return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj)}
     },

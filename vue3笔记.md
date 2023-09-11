@@ -848,7 +848,7 @@ methods:{
 
 #### 	带ref的响应式变量
 
-​		import {ref} from vue
+​		import {ref} from "vue";
 
 ​		const conter =ref(0)
 
@@ -872,3 +872,9 @@ methods:{
 ​		通过ES6扩展运算符进行解构使得对象中的属性不是响应式的
 
 ​		
+
+#### 	在setup中使用watch
+
+​		import {watch} from "vue";
+
+​		watch(侦听的响应式引用,回调函数)
