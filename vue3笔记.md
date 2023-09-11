@@ -451,3 +451,78 @@ v-for为什么要有key
 ​		v-model.trim
 
 ​	
+
+
+
+### vue组件
+
+​	vue组件是带有名称的可复用的实例，单独模块的封装
+
+#### 父组件向子组件传递数据(Prop)
+
+##### 	数组形式
+
+<script>
+  import HelloWorld from "./HelloWorld.vue";
+  export default {
+    data(){
+      return{
+        msg:"helloWorld"
+      }
+    },
+    components:{
+      HelloWorld
+    }
+  }
+</script>
+
+<template>
+  <HelloWorld :message="msg" zkt="zkt"></HelloWorld>
+  <h2>我是content组件内容</h2>
+  <h2>{{msg}}</h2>
+</template>
+
+<style scoped>
+</style>
+
+<script>
+  export default {
+    props:['message',"zkt"]
+  }
+</script>
+
+<template>
+  <div>
+    hello
+    <h2>{{message}}</h2>
+    <h2>{{zkt}}</h2>
+  </div>
+</template>
+
+<style>
+</style>
+
+
+
+##### 对象形式
+
+	props:{
+		message:{
+	    type:String, //限制类型
+	    default:"您好", //设置默认值
+	    required:true  //是否必传
+	  }
+	}
+​	传的值为数组或对象时，默认值必须从一个工厂函数返回
+
+​		default(){
+
+​			return []
+
+}
+
+
+
+##### 单向数据流
+
+​	所有的prop都使得其父子prop实现单向下行绑定，父组件的更新会向下流动到子组件，但反过来则不行
