@@ -1,7 +1,6 @@
 <script>
   import content from "./components/content.vue";
-  import {ref} from "vue";
-  import {reactive} from "vue";
+  import {ref,reactive,toRefs} from "vue";
   export default {
     data(){
       return{
@@ -26,7 +25,7 @@
           name:"小张"
         }
       })
-      return {msg,changeMsg,counter,changeCounter,obj}
+      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj)}
     },
     components:{
       content
