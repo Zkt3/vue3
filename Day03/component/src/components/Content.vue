@@ -25,6 +25,7 @@
   <h2>我是content组件内容</h2>
   <h2>{{msg}}</h2>
   <button @click="sendParent">将数据提交给父组件</button>
+  <HelloWorld></HelloWorld>
 </template>
 
 <style scoped>

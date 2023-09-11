@@ -584,6 +584,46 @@ methods:{
 
 
 
+#### 组件间的跨级通信(provide&&inject)
+
+​	若要访问组件实例property，需要将provide转换为返回对象的函数
+
+##### 	基本使用
+
+		provide(){
+	  	return{
+	    	Message:this.Message
+	  	}
+	},
+	
+	
+	inject:['Message']
+##### 	响应式
+
+​		provide和inject默认情况下不是响应式
+
+​		1.响应式对象方式
+
+				provide(){
+					return{
+						obj:this.obj
+				}
+		},
+​	2.函数返回响应式数据(一般和computed联用)
+
+			provide(){
+				return{
+					message:()=>this.message
+			}
+	},
+	
+	另一个组件中的computed:
+		computed:{
+			newMsg:function(){
+				return this.message()
+			}
+		}
+
 ### 插槽
 
 #### 	插槽的基本使用(slot)

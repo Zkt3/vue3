@@ -1,5 +1,6 @@
 <script>
 import content from "./components/Content.vue";
+import HomeView from "./components/HomeView.vue";
 export default {
   data(){
     return{
@@ -8,7 +9,8 @@ export default {
     }
   },
   components:{
-    content
+    content,
+    HomeView
   },
   methods:{
     getChild:function (value){
@@ -20,6 +22,7 @@ export default {
 
 <template>
   <div>
+    <HomeView></HomeView>
     <content @injectMsg="getChild"></content>
     <h2>{{msg}}</h2>
     <p>--------------</p>
