@@ -555,3 +555,29 @@ methods:{
     	this.message=value
  	 }
 }
+
+
+
+#### 父子组件访问方式
+
+##### 	父组件访问子组件($refs)
+
+​		<HelloWorld :message="msg" zkt="zkt" ref="hello"></HelloWorld>
+
+​		mounted() {
+
+ 		 *console*.log(this.$refs.hello.a)
+
+​		}	
+
+
+
+##### 	子组件访问父组件($parent)
+
+​		this.$parent即可拿到父组件的值，但由于开发中组件的复用性，一个组件可能有多个父组件，所以在开发中尽量少使用，一般用props拿到父组件的值
+
+
+
+##### 	子组件访问根组件($root)
+
+​		this.$root

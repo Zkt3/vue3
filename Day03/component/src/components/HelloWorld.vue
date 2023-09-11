@@ -1,5 +1,10 @@
 <script>
   export default {
+    data(){
+      return{
+        a:10
+      }
+    },
     // props:['message',"zkt"]
     props:{
       message:{
