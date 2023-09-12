@@ -903,3 +903,13 @@ methods:{
 ​		1.watchEffect不需要制度监听的属性，自动收集依赖，只要在回调中引用了响应式的属性，只要这些属性发生改变，回调就会执行，watch只能侦听指定的属性，做出回调函数的执行，Vue3后可以侦听多个
 
 ​		2.watch可以获取新值和旧值
+
+
+
+#### 	setup中使用computed
+
+​		返回一个带有value属性的对象
+
+​		import {computed} from "vue";
+
+​		

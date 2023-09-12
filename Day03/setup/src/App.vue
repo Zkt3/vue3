@@ -1,6 +1,6 @@
 <script>
   import content from "./components/content.vue";
-  import {ref,reactive,toRefs,watch,watchEffect} from "vue";
+  import {ref,reactive,toRefs,watch,watchEffect,computed} from "vue";
   export default {
     data(){
       return{
@@ -34,7 +34,13 @@
       watchEffect(()=>{
         console.log(obj.name)
       })
-      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj)}
+
+      const zkt =ref("zkt")
+      const reverseZkt =computed(()=>{
+        return zkt.value.split('').reverse().join('')
+      })
+      console.log(reverseZkt.value)
+      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj),reverseZkt}
     },
     components:{
       content
