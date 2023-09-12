@@ -1100,3 +1100,25 @@ export default router
 	  	component: User,
 		},
 		 <router-link to="/user/123">Go to User</router-link>
+
+
+#### 	404页面
+
+		{
+			path: '/:path(.*)',
+	  	component: NotFound
+		}
+
+
+#### 	路由正则与重复参数
+
+		{
+			// 一定是数字
+	  	// path: '/news/:id(\\d+)',
+	  	// 可以有多个参数
+	  	// path: '/news/:id+',
+	  	// 参数可有可无，*参数可以重复叠加，？则不能
+	  	// path: '/news/:id*',
+	  	path: '/news/:id?',
+	  	component: News
+		}
