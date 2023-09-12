@@ -1,12 +1,15 @@
 <script>
   import content from "./components/content.vue";
-  import {ref,reactive,toRefs,watch,watchEffect,computed} from "vue";
+  import {ref, reactive, toRefs, watch, watchEffect, computed, onMounted} from "vue";
+
+
   export default {
     data(){
       return{
         message:"helloWord"
       }
     },
+
     setup(){
       let msg="hello"
       function changeMsg(){
@@ -40,7 +43,12 @@
         return zkt.value.split('').reverse().join('')
       })
       console.log(reverseZkt.value)
-      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj),reverseZkt}
+      const injectCounter=function (value){
+        console.log(value)
+      }
+
+
+      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj),reverseZkt,injectCounter}
     },
     components:{
       content
@@ -54,7 +62,7 @@
     {{counter}}
     <button @click="changeMsg">改变msg</button>
     <button @click="changeCounter">改变counter</button>
-    <content></content>
+    <content :message="message" class="box" id="content" @injectCounter='injectCounter'></content>
   </div>
 </template>
 

@@ -913,3 +913,73 @@ methods:{
 ​		import {computed} from "vue";
 
 ​		
+
+#### 	setup中使用生命周期
+
+​		import {onBeforeMount,onMounted,onBeforeUpdate,onUpdated} from "vue";
+
+​	
+
+#### 	setup中的参数
+
+##### 		props
+
+​			setup函数中的第一个参数是props，它是响应式的，当传入新的props时，它将被更新
+
+<script>
+  export default {
+    props:{
+      message:{
+        type:String,
+        default:"111"
+      }
+    },
+    setup(props){
+      console.log(props.message)
+    }
+  }
+</script>
+
+
+
+##### 	context
+
+###### 		context.attrs
+
+​			<content :message="message" class="box" id="content"></content>	
+
+			setup(props,context){
+	  		console.log(context.attrs)
+			}
+​	
+
+###### 		context.slots
+
+​			等同于$slots
+
+​	
+
+###### 		context.emit
+
+​			方法，等同于$emit
+
+			const counter =ref(20)
+			function sendParents(){
+	  		context.emit('injectCounter',counter.value)
+			}
+
+
+###### 		context.expose
+
+​			暴露公共函数
+
+```
+		function sendParents(){
+  		context.emit('injectCounter',counter.value)
+	}
+
+		context.expose({
+  		sendParents
+	})
+```
+
