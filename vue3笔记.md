@@ -1201,3 +1201,54 @@ router.go(-100)
 router.go(100)
 ```
 
+
+
+#### 	命名路由和命名视图
+
+##### 		命名路由
+
+		const routes = [
+	    {
+	    path: '/user/:username',
+	    name: 'user',
+	    component: User,
+	  },
+	]
+	要链接到一个命名的路由，可以向 router-link 组件的 to 属性传递一个对象：
+	<router-link :to="{ name: 'user', params: { username: 'erina' }}">
+	  User
+	</router-link>
+	这跟代码调用 router.push() 是一回事：
+	router.push({ name: 'user', params: { username: 'erina' } })
+##### 		命名视图
+
+	const router = createRouter({
+	history: createWebHashHistory(),
+	  routes: [
+	    {
+	      path: '/',
+	      components: {
+	        default: Home,
+	        // LeftSidebar: LeftSidebar 的缩写
+	        LeftSidebar,
+	        // 它们与 `<router-view>` 上的 `name` 属性匹配
+	        RightSidebar,
+	      },
+	    },
+	  ],
+	})
+	const router = createRouter({
+	  history: createWebHashHistory(),
+	  routes: [
+	    {
+	      path: '/',
+	      components: {
+	        default: Home,
+	        // LeftSidebar: LeftSidebar 的缩写
+	        LeftSidebar,
+	        // 它们与 `<router-view>` 上的 `name` 属性匹配
+	        RightSidebar,
+	      },
+	    },
+	  ],
+	})
