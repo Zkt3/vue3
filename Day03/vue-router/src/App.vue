@@ -1,4 +1,5 @@
 <script setup>
+import Parent from "./views/Parent.vue";
 </script>
 
 <template>
@@ -11,6 +12,7 @@
     <router-link to="/about">Go to About</router-link>
     <router-link to="/user/123">Go to User</router-link>
     <router-link to="/news/456">Go to News</router-link>
+    <router-link to="/parent">Go to Parent</router-link>
   </p>
   <!-- 路由出口 -->
   <!-- 路由匹配到的组件将渲染在这里 -->

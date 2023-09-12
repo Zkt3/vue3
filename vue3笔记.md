@@ -1122,3 +1122,21 @@ export default router
 	  	path: '/news/:id?',
 	  	component: News
 		}
+
+
+#### 	嵌套路由
+
+	{
+		path: '/parent',
+	  component: Parent,
+	  children: [
+	    {
+	      path: 'styleone',
+	      component: Styleone,
+	    },
+	    {
+	      path: 'styletwo',
+	      component: Styletwo,
+	    },
+	  ],
+	},
