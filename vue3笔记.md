@@ -998,3 +998,96 @@ methods:{
 const name =inject('name')
 ```
 
+
+
+#### SFC规范语法
+
+<script setup>是在SFC中使用组合式API编译时的语法糖，里面的代码会被编译成setup函数中的内容
+
+
+
+### router路由
+
+​	路由可以理解为指向，路由核心就是改变URL，但是页面不进行整体刷新
+
+#### 	路由表
+
+​		路由表是一个映射表，一个路由就是一组映射关系，key:value
+
+​		key：表示路由
+
+​		value：可以为function或component
+
+#### 	vue-router
+
+​		vue-router是基于路由和组件的，路由是用来设定访问路径，将路径和组件映射起来
+
+##### 		安装
+
+​			npm install vue-router@4
+
+##### 		基本使用	
+
+<script setup></script>
+
+<template>
+  <h1>Hello App!</h1>
+  <p>
+    <!--使用 vue-router-link 组件进行导航 -->
+    <!--通过传递 `to` 来指定链接 -->
+    <!--`<vue-router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
+    <router-link to="/">Go to Home</router-link>
+    <router-link to="/about">Go to About</router-link>
+  </p>
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
+</template>
+
+<style scoped></style>
+
+​			
+
+​			js文件存放的位置:
+
+##### 					![截屏2023-09-12 20.54.43](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-12 20.54.43.png)
+
+```
+	import {createRouter,createWebHashHistory} from "vue-router";
+// 1. 定义路由组件.
+// 也可以从其他文件导入
+import Home from "../views/Home.vue";
+import About from "../views/About.vue";
+// 2. 定义一些路由
+// 每个路由都需要映射到一个组件。
+// 我们后面再讨论嵌套路由。
+const routes = [
+​    { path: '/', component: Home },
+​    { path: '/about', component: About },
+]
+
+// 3. 创建路由实例并传递 `routes` 配置
+// 你可以在这里输入更多的配置，但我们在这里
+// 暂时保持简单
+const router = createRouter({
+    // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
+    history: createWebHashHistory(),
+    routes, // `routes: routes` 的缩写
+})
+export default router
+```
+
+​		路由组件存放的位置
+
+​		![截屏2023-09-12 20.57.31](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-12 20.57.31.png)
+
+​	
+
+​		在main.js中挂载
+
+		import {createApp} from 'vue'import './style.css'
+		import App from './App.vue'
+		import router from "./router/index.js";
+		const app=createApp(App)
+		app.use(router) //要在mount之前
+		app.mount('#app')
