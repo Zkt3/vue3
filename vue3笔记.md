@@ -1091,3 +1091,12 @@ export default router
 		const app=createApp(App)
 		app.use(router) //要在mount之前
 		app.mount('#app')
+
+
+#### 	带参数的动态路由匹配
+
+		{
+			path: '/user/:id',
+	  	component: User,
+		},
+		 <router-link to="/user/123">Go to User</router-link>
