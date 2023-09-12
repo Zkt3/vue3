@@ -873,8 +873,33 @@ methods:{
 
 ​		
 
-#### 	在setup中使用watch
+#### 	在setup中使用watch(无法深度监听)
 
 ​		import {watch} from "vue";
 
 ​		watch(侦听的响应式引用,回调函数)
+
+		watch(counter,(newVal,oldVal)=>{
+			console.log(newVal)
+	  	console.log(oldVal)
+		})
+
+
+#### 	watchEffect进行深度监听 
+
+​		import {watchEffect} from "vue";
+
+​		watchEffect(回调函数 )
+
+​		不需要制度监听的属性，组件初始化的时候会执行一次回调函数，自动收集依赖
+
+		watchEffect(()=>{
+			console.log(obj.name)
+		})
+
+
+#### 	watch和watchEffect的区别
+
+​		1.watchEffect不需要制度监听的属性，自动收集依赖，只要在回调中引用了响应式的属性，只要这些属性发生改变，回调就会执行，watch只能侦听指定的属性，做出回调函数的执行，Vue3后可以侦听多个
+
+​		2.watch可以获取新值和旧值

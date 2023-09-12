@@ -1,6 +1,6 @@
 <script>
   import content from "./components/content.vue";
-  import {ref,reactive,toRefs,watch} from "vue";
+  import {ref,reactive,toRefs,watch,watchEffect} from "vue";
   export default {
     data(){
       return{
@@ -29,6 +29,10 @@
       watch(counter,(newVal,oldVal)=>{
         console.log(newVal)
         console.log(oldVal)
+      })
+
+      watchEffect(()=>{
+        console.log(obj.name)
       })
       return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj)}
     },
