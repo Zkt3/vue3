@@ -1,6 +1,6 @@
 <script>
   import content from "./components/content.vue";
-  import {ref, reactive, toRefs, watch, watchEffect, computed, onMounted} from "vue";
+  import {ref, reactive, toRefs, watch, watchEffect, computed, provide} from "vue";
 
 
   export default {
@@ -48,7 +48,12 @@
       }
 
 
-      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj),reverseZkt,injectCounter}
+      const name =ref("zkt")
+      provide('name',name)
+      function changeName(){
+        name.value="zzq"
+      }
+      return {msg,changeMsg,counter,changeCounter,obj,...toRefs(obj),reverseZkt,injectCounter,changeName}
     },
     components:{
       content
@@ -63,6 +68,7 @@
     <button @click="changeMsg">改变msg</button>
     <button @click="changeCounter">改变counter</button>
     <content :message="message" class="box" id="content" @injectCounter='injectCounter'></content>
+    <button @click="changeName">改变名字</button>
   </div>
 </template>
 

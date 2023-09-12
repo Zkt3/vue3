@@ -983,3 +983,18 @@ methods:{
 	})
 ```
 
+
+
+#### 	setup中使用provide和inject
+
+​		import {provide} from "vue";
+
+		const name =ref("zkt")
+		provide('name',name)
+
+​		import {inject} from "vue";
+
+```
+const name =inject('name')
+```
+

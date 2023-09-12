@@ -1,5 +1,5 @@
 <script>
-import {ref,h} from "vue";
+import {ref,h,inject} from "vue";
   export default {
     props:{
       message:{
@@ -18,7 +18,9 @@ import {ref,h} from "vue";
       context.expose({
         sendParents
       })
-      return{sendParents}
+
+      const name =inject('name')
+      return{sendParents,name}
     }
   }
 </script>
@@ -26,6 +28,7 @@ import {ref,h} from "vue";
 <template>
   <h2>我是content组件</h2>
   <button @click="sendParents">传递数据</button>
+  {{name}}
 </template>
 
 <style scoped>
