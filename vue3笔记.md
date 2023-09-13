@@ -1617,3 +1617,31 @@ axios.all([getUserAccount(), getUserPermissions()])
   }));
 ```
 
+
+
+#### 	proxy解决跨域问题
+
+​		由于浏览器具有同源策略的保护机制，所以vite通过proxy解决跨域问题
+
+​		proxy配置的位置:
+
+​		![截屏2023-09-13 19.57.52](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-13 19.57.52.png)
+
+	server:{ //中转服务器
+		proxy:{
+	    '/path':{
+	      target:'https://i.maoyan.com', //替换的服务端地址
+	      changeOrigin:true, //开启代理,允许跨域
+	      rewrite:path => path.replace(/^\/path/,'')//设置重写的路径
+	    }
+	  }
+	}
+	onMounted(() => {
+	  axios
+	    .get(
+	      '/path/api/mmdb/movie/v3/list/hot.json?ct=%E9%95%BF%E6%B2%99&ci=70&channelId=4',
+	    )
+	    .then((res) => {
+	      console.log(res);
+	    });
+	});
