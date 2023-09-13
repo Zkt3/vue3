@@ -1696,7 +1696,7 @@ createApp(App).use(store).mount('#app')
 
 #### 	基本使用-mutations
 
-通过store.commit 方法触发对应函数状态变更
+​		通过store.commit 方法触发对应函数状态变更
 
 ```
 mutations: {
@@ -1724,3 +1724,26 @@ mutations: {
 
 ```
 
+
+
+#### 	基本使用-getters(可以当成store中的计算属性)
+
+	getters:{
+		reverseMsg:function (state){
+	    return state.msg.split('').reverse().join('')
+	  },
+	  reverseMsgLength:function (state,getters){ //getters表示当前store中的getters对象
+	    return getters.reverseMsg.length
+	  }
+	}
+	
+	
+	const reverseMsg = computed(() => {
+	  return store.getters.reverseMsg;
+	});
+	const reverseMsgLength = computed(() => {
+	  return store.getters.reverseMsgLength;
+	});
+	
+	<h1>{{ reverseMsg }}</h1>
+	<h1>{{ reverseMsgLength }}</h1>
