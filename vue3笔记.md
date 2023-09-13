@@ -1145,6 +1145,8 @@ export default router
 #### 	通过js跳转
 
 ```
+import {useRouter} from 'vue-router';
+const router = useRouter();
 // 字符串路径router.push('/users/eduardo')
 
 // 带有路径的对象
@@ -1158,6 +1160,14 @@ router.push({ path: '/register', query: { plan: 'private' } })
 
 // 带 hash，结果是 /about#team
 router.push({ path: '/about', hash: '#team' })
+
+接收：
+import {useRoute} from 'vue-router';
+const route = useRoute();
+const Param1 = route.query.id;
+if (Param1) {
+   id.value = Param1;
+}
 ```
 
 ​	**注意**：如果提供了 `path`，`params` 会被忽略，上述例子中的 `query` 并不属于这种情况。取而代之的是下面例子的做法，你需要提供路由的 `name` 或手写完整的带有参数的 `path` ：
