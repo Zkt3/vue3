@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import {computed, onMounted} from 'vue';
 
 const store = useStore();
 const count = computed(() => {
@@ -12,6 +12,9 @@ const reverseMsg = computed(() => {
 const reverseMsgLength = computed(() => {
   return store.getters.reverseMsgLength;
 });
+onMounted(()=>{
+  store.dispatch('getHot','hhh')
+})
 function change(num) {
   store.commit('increment', num);
 }

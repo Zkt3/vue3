@@ -1747,3 +1747,27 @@ mutations: {
 	
 	<h1>{{ reverseMsg }}</h1>
 	<h1>{{ reverseMsgLength }}</h1>
+
+
+#### 	基本使用-actions(需要通过mutations去改变状态)
+
+```
+actions:{
+  getHot:function (context,payload){ //context：与store实例具有相同属性和方法的对象
+    axios
+        .get(
+            '/path/api/mmdb/movie/v3/list/hot.json?ct=%E9%95%BF%E6%B2%99&ci=70&channelId=4',
+        )
+        .then((res) => {
+          context.commit('updateHotList',res.data.data.hot)
+          *console*.log(context.state.hotList)
+        });
+  }
+}
+
+
+onMounted(()=>{
+  store.dispatch('getHot','hhh')
+})
+```
+
