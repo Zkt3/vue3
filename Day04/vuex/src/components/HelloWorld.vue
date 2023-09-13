@@ -1,5 +1,5 @@
 <script setup>
-import { useStore } from 'vuex';
+import {mapState, useStore} from 'vuex';
 import {computed, onMounted} from 'vue';
 
 const store = useStore();
