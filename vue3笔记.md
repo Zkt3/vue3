@@ -1469,3 +1469,57 @@ const Home=()=>import('../views/Home.vue')
 },
 ```
 
+
+
+#### 	状态管理(不用vuex)
+
+​		状态(数据)放置的位置：
+
+![截屏2023-09-13 16.58.52](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-13 16.58.52.png)
+
+```
+import { reactive } from 'vue';
+
+const *store* = {
+  state: reactive({
+    msg: 'hello',
+  }),
+  updateMsg: function () {
+    this.state.msg = '你好';
+  },
+};
+
+export default *store*;
+```
+
+<script setup>
+import {inject, reactive} from "vue";
+
+const store=inject('store')
+
+</script>
+
+<template>
+  <div>{{store.state.msg}}</div>
+  <button @click="store.updateMsg()">改变msg</button>
+</template>
+
+<style scoped>
+</style>
+
+
+
+<script setup>
+import store from '../store/index.js';
+import Home from '../views/Home.vue';
+import { provide } from 'vue';
+provide('store', store);
+</script>
+
+<template>
+  <div>
+    <Home></Home>
+  </div>
+</template>
+
+<style scoped></style>
