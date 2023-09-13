@@ -1669,6 +1669,8 @@ axios.all([getUserAccount(), getUserPermissions()])
 
 ​			![截屏2023-09-13 20.47.00](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-13 20.47.00.png)
 
+#### 	
+
 #### 	基本使用-state
 
 ```
@@ -1688,5 +1690,37 @@ export default store;
 import store from "./store/index.js";
 
 createApp(App).use(store).mount('#app')
+```
+
+
+
+#### 	基本使用-mutations
+
+通过store.commit 方法触发对应函数状态变更
+
+```
+mutations: {
+  increment(state, value) {
+    state.count += value;
+  },
+},
+
+<script setup>
+  import {useStore} from "vuex";
+  const store =useStore()
+  function change(num){
+      store.commit('increment',num)
+  }
+</script>
+
+<template>
+  <h1>{{$store.state.count}}</h1>
+  <button @click="change(5)">count++</button>
+</template>
+
+<style scoped>
+
+</style>
+
 ```
 
