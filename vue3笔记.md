@@ -1263,3 +1263,81 @@ router.go(100)
 	  ],
 	})
 	
+
+
+#### 	重定向和别名
+
+##### 	重定向
+
+###### 		重定向(path)
+
+	{
+		path: '/',
+	  redirect: '/home',
+	},
+	{
+	  path: '/home',
+	  component: Home,
+	},
+###### 		重定向(name)
+
+```
+{
+  path: '/',
+  redirect:{name:'home'}
+},
+{
+  path: '/home',
+  name:'name',
+  component: Home,
+},
+```
+
+###### 		重定向(function)
+
+```
+{
+  path: '/',
+  redirect:(to)=>{
+    return{path:'/home'}
+  }
+},
+{
+  path: '/home',
+  name:'name',
+  component: Home,
+},
+```
+
+##### 别名
+
+	{
+		path: '/parent',
+	  component: Parent,
+	  alias:['father','fuqin'],
+	  children: [
+	    {
+	      path: 'styleone',
+	      component: Styleone,
+	    },
+	    {
+	      path: 'styletwo',
+	      component: Styletwo,
+	    },
+	  ],
+	},
+
+
+#### 路由组件传参
+
+	const User = {
+	// 请确保添加一个与路由参数完全相同的 prop 名
+	  props: ['id'],
+	  template: '<div>User {{ id }}</div>'
+	}
+	const routes = [{ path: '/user/:id', component: User, props: true }]
+	
+	接收：
+	const props =defineProps({
+		id:String
+	})

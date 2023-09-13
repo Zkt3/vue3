@@ -15,6 +15,15 @@ import Styletwo from '../views/Styletwo.vue';
 const routes = [
   {
     path: '/',
+    // redirect: '/home',
+    // redirect:{name:'home'}
+    redirect:(to)=>{
+      return{path:'/home'}
+    }
+  },
+  {
+    path: '/home',
+    name:'name',
     component: Home,
   },
   {
@@ -42,6 +51,7 @@ const routes = [
   {
     path: '/parent',
     component: Parent,
+    alias:['father','fuqin'],
     children: [
       {
         path: 'styleone',
