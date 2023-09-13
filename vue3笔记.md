@@ -1471,7 +1471,7 @@ const Home=()=>import('../views/Home.vue')
 
 
 
-#### 	状态管理(不用vuex)
+### 状态管理(不用vuex)
 
 ​		状态(数据)放置的位置：
 
@@ -1619,7 +1619,7 @@ axios.all([getUserAccount(), getUserPermissions()])
 
 
 
-#### 	proxy解决跨域问题
+### proxy解决跨域问题
 
 ​		由于浏览器具有同源策略的保护机制，所以vite通过proxy解决跨域问题
 
@@ -1645,3 +1645,48 @@ axios.all([getUserAccount(), getUserPermissions()])
 	      console.log(res);
 	    });
 	});
+
+
+### Vuex
+
+​	Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式 + 库**。它采用集中式[存储管理](https://so.csdn.net/so/search?q=存储管理&spm=1001.2101.3001.7020)应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化
+
+​	这个状态自管理应用包含以下几个部分：
+
+- **状态**，驱动应用的数据源；
+- **视图**，以声明方式将**状态**映射到视图；
+- **操作**，响应在**视图**上的用户输入导致的状态变化。
+
+<img src="/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-13 20.33.28.png" alt="截屏2023-09-13 20.33.28" style="zoom:25%;" />
+
+#### 	安装
+
+​		npm install vuex@next --save
+
+
+
+#### 	创建store
+
+​			![截屏2023-09-13 20.47.00](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-13 20.47.00.png)
+
+#### 	基本使用-state
+
+```
+import { createStore } from 'vuex';
+const *store* = createStore({
+  state() {
+    //存储的单一状态，存储基本数据
+    return {
+      count: 0,
+    };
+  },
+});
+
+export default store;
+
+
+import store from "./store/index.js";
+
+createApp(App).use(store).mount('#app')
+```
+
