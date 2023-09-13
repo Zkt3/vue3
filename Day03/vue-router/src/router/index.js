@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 // 1. 定义路由组件.
 // 也可以从其他文件导入
-import Home from '../views/Home.vue';
+// import Home from '../views/Home.vue';
+const Home=()=>import('../views/Home.vue')
 import About from '../views/About.vue';
 import User from '../views/User.vue';
 import NotFound from '../views/NotFound.vue';
@@ -15,11 +16,7 @@ import Styletwo from '../views/Styletwo.vue';
 const routes = [
   {
     path: '/',
-    // redirect: '/home',
-    // redirect:{name:'home'}
-    redirect:(to)=>{
-      return{path:'/home'}
-    }
+    redirect:'/home'
   },
   {
     path: '/home',
@@ -29,10 +26,16 @@ const routes = [
   {
     path: '/about',
     component: About,
+    beforeEnter:(to,from,next)=>{
+      console.log(to);
+      console.log(from);
+      next()
+    }
   },
   {
     path: '/user/:id',
     component: User,
+    props:true
   },
   {
     path: '/:path(.*)',
@@ -51,7 +54,7 @@ const routes = [
   {
     path: '/parent',
     component: Parent,
-    alias:['father','fuqin'],
+    alias:['/father','/fuqin'],
     children: [
       {
         path: 'styleone',
@@ -74,4 +77,9 @@ const router = createRouter({
   routes, // `routes: routes` 的缩写
 });
 
+router.beforeEach((to,from,next)=>{
+  console.log(to);
+  console.log(from);
+  next();
+})
 export default router;

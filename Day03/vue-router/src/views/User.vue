@@ -2,6 +2,10 @@
 import { useRoute } from 'vue-router';
 
 console.log(useRoute().params.id);
+const props =defineProps({
+  id:String
+})
+console.log(props)
 </script>
 
 <template>

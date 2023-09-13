@@ -1370,3 +1370,102 @@ router.go(100)
 	    //...
 	  ],
 	})
+
+
+
+#### 路由守卫
+
+##### 	router.beforeEach(全局守卫)
+
+​		注册一个全局前置守卫	**`to`**: 即将要进入的目标 **`from`**: 当前导航正要离开的路由
+
+		const router = createRouter({ ... })
+		router.beforeEach((to, from) => {
+	  // ...
+	  // 返回 false 以取消导航
+	  return false
+	})
+
+	router.beforeEach(async (to, from) => {
+		if (
+	     // 检查用户是否已登录
+	     !isAuthenticated &&
+	     // ❗️ 避免无限重定向
+	     to.name !== 'Login'
+	   ) {
+	     // 将用户重定向到登录页面
+	     return { name: 'Login' }
+	   }
+	 })
+用户验证身份：
+
+	router.beforeEach((to, from, next) => {
+	  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+	  else next()
+	})
+
+
+##### 	router.beforeEnter(路由独享的守卫 )
+
+```
+{
+  path: '/about',
+  component: About,
+  beforeEnter:(to,from,next)=>{
+    *console*.log(to);
+    *console*.log(from);
+    next()
+  }
+},
+```
+
+
+
+##### 	组件内的路由
+
+```
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
+import { ref } from 'vue'
+
+export default {
+  setup() {
+    // 与 beforeRouteLeave 相同，无法访问 `this`
+    onBeforeRouteLeave((to, from) => {
+      const answer = window.confirm(
+        'Do you really want to leave? you have unsaved changes!'
+      )
+      // 取消导航并停留在同一页面上
+      if (!answer) return false
+    })
+```
+
+
+
+    const userData = ref()
+    
+    // 与 beforeRouteUpdate 相同，无法访问 `this`
+    onBeforeRouteUpdate(async (to, from) => {
+      //仅当 id 更改时才获取用户，例如仅 query 或 hash 值已更改
+      if (to.params.id !== from.params.id) {
+        userData.value = await fetchUser(to.params.id)
+      }
+    })
+    },
+    }
+
+
+#### 	路由懒加载
+
+当打包构建应用时，JavaScript 包会变得非常大，影响页面加载。如果我们能把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样就会更加高效。
+
+```
+const Home=()=>import('../views/Home.vue')
+
+{
+  path: '/home',
+  name:'name',
+  component: Home,
+},
+```
+
