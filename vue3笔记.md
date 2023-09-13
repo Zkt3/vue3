@@ -1523,3 +1523,97 @@ provide('store', store);
 </template>
 
 <style scoped></style>
+
+
+
+
+
+#### 获取数据
+
+##### 	fetch
+
+```
+fetch('服务器地址').then((res)=>{
+
+			return res.json
+
+}).then((res)=>{
+
+		console.log(res);
+
+})
+```
+
+##### 	axios
+
+###### 		安装
+
+​			npm install axios
+
+​		执行 `GET` 请求
+
+```
+// 为给定 ID 的 user 创建请求
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// GET 参数可以放到params里（推荐）
+axios.get('/user', {
+    params: {
+      ID: 12345
+    }
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// 还可以使用ECMAScript 2017里的async/await，添加 `async` keyword to your outer function/method.
+async function getUser() {
+  try {
+    const response = await axios.get('/user?ID=12345');
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+​		执行 `POST` 请求
+
+```
+axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+```
+
+​		执行多个并发请求
+
+```
+function getUserAccount() {
+  return axios.get('/user/12345');
+}
+
+function getUserPermissions() {
+  return axios.get('/user/12345/permissions');
+}
+axios.all([getUserAccount(), getUserPermissions()])
+  .then(axios.spread(function (acct, perms) {
+    // 两个请求现在都执行完成
+  }));
+```
+
