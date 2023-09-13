@@ -1341,3 +1341,32 @@ router.go(100)
 	const props =defineProps({
 		id:String
 	})
+
+
+#### 不同的历史记录模式
+
+##### 	Hash模式
+
+​		它在内部传递的实际 URL 之前使用了一个哈希字符（`#`）。由于这部分 URL 从未被发送到服务器，所以它不需要在服务器层面上进行任何特殊处理
+
+​		hash 模式是用 `createWebHashHistory()` 创建的：
+
+	import { createRouter, createWebHashHistory } from 'vue-router'
+	const router = createRouter({
+	  history: createWebHashHistory(),
+	  routes: [
+	    //...
+	  ],
+	})
+
+##### 	HTML5 模式
+
+​		用 `createWebHistory()` 创建 HTML5 模式
+
+	import { createRouter, createWebHistory } from 'vue-router'
+	const router = createRouter({
+	  history: createWebHistory(),
+	  routes: [
+	    //...
+	  ],
+	})
