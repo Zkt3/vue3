@@ -2153,5 +2153,111 @@ export const useSettingsStore = defineStore('settings', {
 
 
 
+### 补充
+
+#### 	格式化代码(prettier)
+
+##### 		安装
+
+```
+npm install --save-dev --save-exact prettier
+```
+
+##### 		创建文件
+
+```
+echo {}> .prettierrc.js
+```
+
+##### 		配置文件
+
+```
+// 因为prettier默认是双引号，而现在大部分项目的ts代码都需要是单引号，所以加了下面这段代码。
+module.exports = {
+  singleQuote: true
+}
+```
+
+##### 		编辑器配置(webstorm)
+
+​	1.打开settings，搜索框输入prettier搜索，然后如图操作：（包选择自己安装的包即可）
+
+![截屏2023-09-14 16.00.42](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-14 16.00.42.png)
+
+​	2.可以配置格式化快捷键(在按键映射中找到Prettier的快捷键)
+
+​		![截屏2023-09-14 16.01.31](/Users/zkt/Library/Application Support/typora-user-images/截屏2023-09-14 16.01.31.png)
+
+​	3.解决prettier和eslint之间的校验冲突
+
+​		因为prettier的校验规则会和Eslint的规则产生冲突，所以为了只应用prettier的格式化功能而不需要它的校验功能的话，请按照以下操作：	
+
+```
+npm install --save-dev eslint-plugin-prettier
+npm install --save-dev eslint-config-prettier
+
+安装完之后，再到.eslintrc.json的extends中，加上这句代码：
+"plugin:prettier/recommended"
+```
 
 
+
+#### 	v-for和v-if为什么不要同时使用
+
+​			v-for优先级高于v-if，如果将两者放在一起，会先执行v-for循环列表，再用v-if去判断，造成性能浪费，实际开发中采用computed解决
+
+​		
+
+#### 	vue中怎么自定义指令
+
+##### 		局部注册
+
+```
+<input type="text" v-foucs> 
+
+directives:{ //和data同级
+	focus:{
+		inserted:function(el){
+			el.focus()
+		}
+	}
+}
+```
+
+##### 		全局注册(在main.js中)
+
+```
+Vue.directive('focus',{
+			inserted:function(el){
+			el.focus()
+		}
+})
+```
+
+
+
+##### 	$nextTick
+
+​		将回调函数延迟到下一次dom更新数据之后调用，vue是异步渲染的框架，数据更新之后，dom不会立刻渲染,$nextTick会在dom元素渲染之后被触发，用来获取最新的dom节点
+
+```
+this.$nextTick(()=>{
+
+})
+```
+
+​	使用场景:
+
+​		1.要在生命周期函数created中进行dom操作
+
+​		2.在数据变化后要执行的某个操作，而这个操作需要使用随数据而变化的dom结构时
+
+
+
+##### 	vue中的methods computed wtach
+
+​		computed：计算属性，基于它们的响应式依赖进行缓存，只有在相关的依赖发生改变时才会重新计算，对于任何复杂逻辑
+
+​		watch：侦听器，用于观察和监听页面上的vue实例的变化，如果数据变化的同时进行异步操作，或者比较大的开销
+
+​		methods：给Vue定义方法，只要发生重新渲染， methods调用总是会被执行 
