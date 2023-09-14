@@ -1968,3 +1968,42 @@ export const *useCounterStore* = defineStore('main', () => {
   return { counter, getCounter, addCounter };
 });
 ```
+
+
+
+#### 	使用
+
+```
+<script setup>
+import { useAgeStore, useCounterStore } from '../stores/index.js';
+const ageStore = useAgeStore();
+const countStore = useCounterStore();
+</script>
+
+<template>
+  <h2>{{ ageStore.age }}</h2>
+  <h2>{{ ageStore.getAge }}</h2>
+  <button @click="ageStore.addAge()">改变age</button>
+
+  <h2>{{ countStore.counter }}</h2>
+  <h2>{{ countStore.getCounter }}</h2>
+  <button @click="countStore.addCounter()">改变counter</button>
+</template>
+
+<style scoped></style>
+
+```
+
+​	
+
+#### 	进行解构
+
+```
+import { storeToRefs } from 'pinia';
+const { counter, getCounter } = storeToRefs(countStore);
+const { addCounter } = countStore;
+<h2>{{ counter }}</h2>
+<h2>{{ getCounter }}</h2>
+<button @click="addCounter()">改变counter</button>
+```
+
