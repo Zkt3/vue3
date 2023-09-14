@@ -2082,3 +2082,76 @@ function change() {
     },
 ```
 
+
+
+##### 	actions
+
+​		类似 [getter](https://pinia.vuejs.org/zh/core-concepts/getters.html)，action 也可通过 `this` 访问**整个 store 实例**，并支持**完整的类型标注(以及自动补全✨)**。**不同的是，`action` 可以是异步的**，你可以在它们里面 `await` 调用任何 API，以及其他 action！下面是一个使用 [Mande](https://github.com/posva/mande) 的例子。请注意，你使用什么库并不重要，只要你得到的是一个`Promise`，你甚至可以 (在浏览器中) 使用原生 `fetch` 函数：
+
+```
+import { mande } from 'mande'
+
+const api = mande('/api/users')
+
+export const useUsers = defineStore('users', {
+  state: () => ({
+    userData: null,
+    // ...
+  }),
+
+  actions: {
+    async registerUser(login, password) {
+      try {
+        this.userData = await api.post({ login, password })
+        showTooltip(`Welcome back ${this.userData.name}!`)
+      } catch (error) {
+        showTooltip(error)
+        // 让表单组件显示错误
+        return error
+      }
+    },
+  },
+})
+```
+
+​		访问其他 store 的 action
+
+```
+import { useAuthStore } from './auth-store'
+
+export const useSettingsStore = defineStore('settings', {
+  state: () => ({
+    preferences: null,
+    // ...
+  }),
+  actions: {
+    async fetchUserPreferences() {
+      const auth = useAuthStore()
+      if (auth.isAuthenticated) {
+        this.preferences = await fetchPreferences()
+      } else {
+        throw new Error('User must be authenticated')
+      }
+    },
+  },
+})
+```
+
+​	
+
+##### 	pinia和vuex的比较
+
+​		pinia最重要的是，搭配 TypeScript 一起使用时有非常可靠的类型推断支持 pinia 没有 mutations， 而actions的使用不同，在actions中可以处理同步也可以处理异步，getters的使用是一致的，state与vue2中data是相似的
+
+​		pinia没有总出口全是模块化，需要定义模块名称，当多个模块需要协作的时候需要引入多个模块，vuex是有总入口的，在使用模块化的时候不需要引入多个模块
+
+​		pinia 在修改状态的时候不需要通过其他api， vuex需要通过commit， dispatch去修改所以在语法上比vuex更容易理解和使用，灵活
+
+​		pinia就是更好的vuex，建议在项目中可以直接使用它了，尤其是使用了TypeScript的项目。
+
+
+
+
+
+
+
