@@ -1952,3 +1952,19 @@ const useAgeStore = defineStore('zkt', {
 });
 ```
 
+
+
+#### 	定义Setup Store
+
+```
+export const *useCounterStore* = defineStore('main', () => {
+  const counter = ref(30);
+  const getCounter = *computed*(() => {
+    return counter.value + 5;
+  });
+  function addCounter() {
+    counter.value++;
+  }
+  return { counter, getCounter, addCounter };
+});
+```

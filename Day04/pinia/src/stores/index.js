@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
 
-const useAgeStore = defineStore('zkt', {
+export const useAgeStore = defineStore('zkt', {
   state: () => {
     return { age: 20 };
   },
@@ -15,4 +16,15 @@ const useAgeStore = defineStore('zkt', {
       this.age++;
     },
   },
+});
+
+export const useCounterStore = defineStore('main', () => {
+  const counter = ref(30);
+  const getCounter = computed(() => {
+    return counter.value + 5;
+  });
+  function addCounter() {
+    counter.value++;
+  }
+  return { counter, getCounter, addCounter };
 });
