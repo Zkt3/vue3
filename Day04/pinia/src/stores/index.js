@@ -3,7 +3,11 @@ import { computed, ref } from 'vue';
 
 export const useAgeStore = defineStore('zkt', {
   state: () => {
-    return { age: 20 };
+    return {
+      age: 20,
+      name: '张三',
+      arr: [1, 2, 3, 4],
+    };
   },
   getters: {
     getAge(state) {

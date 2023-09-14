@@ -2007,3 +2007,42 @@ const { addCounter } = countStore;
 <button @click="addCounter()">改变counter</button>
 ```
 
+
+
+#### 	pinia核心概念
+
+##### 		state
+
+​			在 Pinia 中，state 被定义为一个返回初始状态的函数。这使得 Pinia 可以同时支持服务端和客户端。为了完整类型推理，推荐使用箭头函数
+
+​			修改状态:
+
+​				1.批量修改				
+
+```
+function change() {
+   ageStore.age++;
+}
+```
+
+​				2.批量修改 $patch(对象)
+
+```
+  ageStore.$patch({
+    age:40,
+    name:"zkt",
+    arr:[...ageStore.arr,5]
+  })
+```
+
+​			3.批量修改 $patch(函数)
+
+```
+  ageStore.$patch((state) => {
+    state.age = 40;
+    state.name = 'zkt';
+    state.arr.push(5);
+  });
+```
+
+​			4.当逻辑较复杂时，采用封装actions的方式
