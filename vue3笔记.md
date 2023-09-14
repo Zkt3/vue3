@@ -2046,3 +2046,39 @@ function change() {
 ```
 
 ​			4.当逻辑较复杂时，采用封装actions的方式
+
+
+
+##### 	getters
+
+​		如果要访问其他的getters，可以使用this，但是不能使用箭头函数
+
+```
+  getters: {
+    getAge(state) {
+      return state.age + 5;
+    },
+    getInfo(state){
+      return this.getAge + state.name
+    }
+  },
+```
+
+​		向getters传递参数，以返回函数的参数，缺点是和普通的函数一样，没有缓存的作用
+
+```
+    getAge(state) {
+      // return state.age + 5;
+      return (data)=>state.age + data
+    },
+```
+
+​		访问其他store中的getters
+
+```
+    getAge(state) {
+      const countStore =useCounterStore()
+      return state.age+countStore.getCounter
+    },
+```
+

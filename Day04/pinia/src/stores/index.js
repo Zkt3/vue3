@@ -11,8 +11,14 @@ export const useAgeStore = defineStore('zkt', {
   },
   getters: {
     getAge(state) {
-      return state.age + 5;
+      // return state.age + 5;
+      // return (data)=>state.age + data
+      const countStore =useCounterStore()
+      return state.age+countStore.getCounter
     },
+    getInfo(state){
+      return this.getAge + state.name
+    }
   },
   actions: {
     addAge() {

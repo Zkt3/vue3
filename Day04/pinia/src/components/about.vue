@@ -2,7 +2,8 @@
 import { useAgeStore } from '../stores/index.js';
 import { storeToRefs } from 'pinia';
 const ageStore = useAgeStore();
-const { age, name, arr } = storeToRefs(ageStore);
+
+const { age, name, arr, getInfo } = storeToRefs(ageStore);
 function change() {
   //方法一:直接修改
   // ageStore.age++;
@@ -25,6 +26,8 @@ function change() {
   {{ age }}
   {{ name }}
   {{ arr }}
+  {{ageStore.getAge}}
+  {{ getInfo }}
   <button @click="change">修改</button>
 </template>
 
